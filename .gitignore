@@ -2,3 +2,6 @@ __pycache__/
 results/*
 dataset/
 venv/
+video.mp4
+video.avi
+frames/
