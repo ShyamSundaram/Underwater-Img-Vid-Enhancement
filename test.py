@@ -1,6 +1,4 @@
 '''
-Author:Xuelei Chen(chenxuelei@hotmail.com)
-Usgae:
 python test.py --checkpoint CHECKPOINTS_PATH
 '''
 import os
