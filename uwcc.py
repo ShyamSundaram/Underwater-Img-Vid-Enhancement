@@ -1,6 +1,3 @@
-'''
-Authot:Xuelei Chen(chenxuelei@hotmail.com)
-'''
 import torch.utils.data as data
 import os
 from PIL import Image
