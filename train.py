@@ -1,8 +1,3 @@
-'''
-Author:Xuelei Chen(chenxuelei@hotmail.com)
-Usgae:
-python train.py TRAIN_RAW_IMAGE_FOLDER TRAIN_REFERENCE_IMAGE_FOLDER
-'''
 import torch
 import numpy as np
 import torch.nn as nn
