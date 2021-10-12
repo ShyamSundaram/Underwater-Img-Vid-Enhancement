@@ -21,9 +21,8 @@ def getFrames(file):
         success,image=vidcap.read()
         c+=1
 
-
-video = cv2.VideoCapture('video.mp4')
-#write fps in fps.txt
-fps = video.get(cv2.CAP_PROP_FPS)
-file1 = open("fps.txt","w")
-file1.write(str(int(fps)))
+def getFps(video_name): #write fps in fps.txt
+    video = cv2.VideoCapture(video_name)
+    fps = video.get(cv2.CAP_PROP_FPS)
+    file1 = open("fps.txt","w")
+    file1.write(str(int(fps)))

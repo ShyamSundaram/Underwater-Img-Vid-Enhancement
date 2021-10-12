@@ -4,9 +4,15 @@ import os
 image_folder = 'frames'
 video_name = 'video.avi'
 #get frame rate
-file1 = open("fps.txt","r")
-fps = file1.read()
+
+def getFps():
+    file1 = open("fps.txt","r")
+    fps = file1.read()
+    
 def combineFrames(image_folder,video_name='video.avi'):
+
+    fps=getFps()
+
     images = [img for img in os.listdir(image_folder) if img.endswith(".png")]
     for i in range(len(images)):
         images[i]=int(images[i][:-4])
