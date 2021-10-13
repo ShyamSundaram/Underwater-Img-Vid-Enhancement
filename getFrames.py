@@ -1,6 +1,7 @@
 import os
 import torch
 import numpy as np
+import moviepy.editor as mp
 from PIL import Image
 from model import PhysicalNN
 import argparse
@@ -26,3 +27,14 @@ def getFps(video_name): #write fps in fps.txt
     fps = video.get(cv2.CAP_PROP_FPS)
     file1 = open("fps.txt","w")
     file1.write(str(int(fps)))
+
+def getAudio(video_name): #write audio file in audio.mp3
+    # Insert Local Video File Path 
+    clip = mp.VideoFileClip(video_name,"r")
+    #print(clip)
+    # Insert Local Audio File Path
+    clip.audio.write_audiofile("audio.mp3")
+
+# getAudio('video.mp4')
+# getFrames('video.mp4')
+# getFps('video.mp4')
