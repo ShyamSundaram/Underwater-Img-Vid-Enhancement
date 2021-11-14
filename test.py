@@ -45,6 +45,8 @@ def main(checkpoint, imgs_path, result_path):
             img=img.convert('RGB')
         inp = testtransform(img).unsqueeze(0)
         inp = inp.to(device)
+        print('------')
+        print(inp.size())
         out = model(inp)
 
         corrected = unloader(out.cpu().squeeze(0))
