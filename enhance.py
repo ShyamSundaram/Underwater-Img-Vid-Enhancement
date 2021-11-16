@@ -14,7 +14,7 @@ import multiprocessing
 from functools import partial
 
 
-def enhance(img_name, checkpoint="checkpoints/model_best_2842.pth.tar", result_path="results"):
+def enhance(img_name, result_path="results", checkpoint="checkpoints/model_best_2842.pth.tar"):
     # Check for GPU
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
