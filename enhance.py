@@ -10,9 +10,11 @@ import argparse
 from torchvision import transforms
 import datetime
 import math
+import multiprocessing
+from functools import partial
 
 
-def main(img_name, checkpoint="checkpoints/model_best_2842.pth.tar", result_path="results"):
+def enhance(img_name, checkpoint="checkpoints/model_best_2842.pth.tar", result_path="results"):
     # Check for GPU
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -53,5 +55,14 @@ def main(img_name, checkpoint="checkpoints/model_best_2842.pth.tar", result_path
     # print(endtime-starttime)
 
 
-if __name__ == '__main__':
-    main("./test_img/img.png",result_path="r2")
+def EnahanceInParallel(imgs_path="test_img"):
+    ori_dirs = []
+    for image in os.listdir(imgs_path):
+        ori_dirs.append(os.path.join(imgs_path, image))
+    
+    p=multiprocessing.Pool(2)
+    starttime = datetime.datetime.now()
+    p.map(enhance,ori_dirs)
+    endtime = datetime.datetime.now()
+    print(endtime-starttime)
+    #enhance("./test_img/img.png",result_path="r2")
