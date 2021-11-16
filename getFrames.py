@@ -20,6 +20,7 @@ def getFrames(file):
         cv2.imwrite("frames/%d.png" % c, image) #write the images into frames directory
         success,image=vidcap.read()
         c+=1
+        yield c
 
 def getFps(video_name): #write fps in fps.txt
     video = cv2.VideoCapture(video_name)

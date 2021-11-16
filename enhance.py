@@ -3,15 +3,10 @@ python test.py --checkpoint CHECKPOINTS_PATH
 '''
 import os
 import torch
-import numpy as np
 from PIL import Image
 from model import PhysicalNN
-import argparse
 from torchvision import transforms
-import datetime
-import math
 import multiprocessing
-from functools import partial
 
 
 def enhance(img_name, result_path="results", checkpoint="checkpoints/model_best_2842.pth.tar"):
@@ -32,7 +27,7 @@ def enhance(img_name, result_path="results", checkpoint="checkpoints/model_best_
     testtransform = transforms.Compose([transforms.ToTensor(),])
     unloader = transforms.ToPILImage()
 
-    starttime = datetime.datetime.now()
+    
 
     
     img = Image.open(img_name)
@@ -50,19 +45,14 @@ def enhance(img_name, result_path="results", checkpoint="checkpoints/model_best_
         os.makedirs(dir)
     corrected.save(dir+'/{}.png'.format(img_name))
     # print(dir+'/{}.png'.format(img_name))
-
-    endtime = datetime.datetime.now()
     # print(endtime-starttime)
 
 
-def EnahanceInParallel(imgs_path="test_img"):
+def EnahanceInParallel(imgs_path="test_img",numprocs=2):
     ori_dirs = []
     for image in os.listdir(imgs_path):
         ori_dirs.append(os.path.join(imgs_path, image))
     
-    p=multiprocessing.Pool(2)
-    starttime = datetime.datetime.now()
+    p=multiprocessing.Pool(numprocs)
     p.map(enhance,ori_dirs)
-    endtime = datetime.datetime.now()
-    print(endtime-starttime)
     #enhance("./test_img/img.png",result_path="r2")
